@@ -24,8 +24,37 @@ import {
   MapPin,
 } from "lucide-react";
 
+// Animated Counter Component
+const AnimatedCounter = ({ target, suffix = "", duration = 2000, decimals = 0 }: { target: number; suffix?: string; duration?: number; decimals?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentValue = easeOutQuart * target;
+      setCount(decimals > 0 ? parseFloat(currentValue.toFixed(decimals)) : Math.floor(currentValue));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [isInView, target, duration, decimals]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
+
 const Transport = () => {
   const [showAnimation, setShowAnimation] = useState(true);
+  const [activeStep, setActiveStep] = useState(0);
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
 
@@ -60,15 +89,9 @@ const Transport = () => {
     },
     {
       icon: Truck,
-      title: "Truck Rental",
-      description: "Commercial truck rental for goods transport",
+      title: "Truck & Lorry",
+      description: "Commercial truck and lorry rental for goods transport",
       color: "bg-orange-500",
-    },
-    {
-      icon: Truck,
-      title: "Lorry",
-      description: "Heavy-duty lorry services for logistics",
-      color: "bg-red-500",
     },
     {
       icon: Users,
@@ -118,26 +141,51 @@ const Transport = () => {
       number: "01",
       title: "Account",
       description: "Create your account or log in",
+      features: [
+        "Quick and easy signup",
+        "Secure login options",
+        "Profile management",
+      ],
     },
     {
       number: "02",
       title: "Add",
       description: "Select your service and destination",
+      features: [
+        "Choose from 9+ services",
+        "Set pickup and drop location",
+        "Select date and time",
+      ],
     },
     {
       number: "03",
       title: "Method",
       description: "Choose payment method",
+      features: [
+        "Multiple payment options",
+        "Cashless transactions",
+        "Secure payment gateway",
+      ],
     },
     {
       number: "04",
       title: "Review",
       description: "Review your booking details",
+      features: [
+        "Verify all information",
+        "Check pricing",
+        "Confirm booking",
+      ],
     },
     {
       number: "05",
       title: "Done",
       description: "Confirm and track your ride",
+      features: [
+        "Instant confirmation",
+        "Real-time tracking",
+        "Driver details",
+      ],
     },
   ];
 
@@ -149,6 +197,7 @@ const Transport = () => {
       features: ["Instant booking", "24/7 availability", "GPS tracking", "Cashless payment"],
       price: "Starting at ₹99",
       popular: false,
+      color: "bg-blue-500",
     },
     {
       icon: Car,
@@ -157,6 +206,7 @@ const Transport = () => {
       features: ["Hourly & daily rates", "Multiple vehicle options", "Driver included", "Flexible packages"],
       price: "Starting at ₹499/day",
       popular: true,
+      color: "bg-blue-600",
     },
     {
       icon: CarTaxiFront,
@@ -165,6 +215,7 @@ const Transport = () => {
       features: ["Eco-friendly", "Affordable fares", "Quick service", "City-wide coverage"],
       price: "Starting at ₹29",
       popular: false,
+      color: "bg-green-500",
     },
     {
       icon: Car,
@@ -173,22 +224,16 @@ const Transport = () => {
       features: ["Luxury vehicles", "Decorated cars", "Fleet packages", "Professional drivers"],
       price: "Starting at ₹2,999",
       popular: false,
+      color: "bg-purple-500",
     },
     {
       icon: Truck,
-      title: "Lorry",
-      description: "Heavy-duty lorry services for construction, logistics, and industrial transportation needs.",
-      features: ["Multiple tonnage options", "Construction transport", "Logistics support", "Expert drivers"],
+      title: "Truck & Lorry",
+      description: "Commercial truck and lorry rental for goods transportation. Heavy-duty vehicles for construction, logistics, and industrial needs.",
+      features: ["Multiple tonnage options", "Construction transport", "Logistics support", "Long distance", "Timely delivery", "Expert drivers"],
       price: "Starting at ₹1,999",
       popular: false,
-    },
-    {
-      icon: Truck,
-      title: "Truck",
-      description: "Commercial truck rental for goods transportation. Reliable and efficient cargo movement.",
-      features: ["Various sizes", "Long distance", "Goods transport", "Timely delivery"],
-      price: "Starting at ₹2,499",
-      popular: false,
+      color: "bg-orange-500",
     },
     {
       icon: Users,
@@ -197,6 +242,7 @@ const Transport = () => {
       features: ["12-18 seater", "AC comfort", "Group packages", "Long distance"],
       price: "Starting at ₹1,499",
       popular: false,
+      color: "bg-indigo-500",
     },
     {
       icon: Package,
@@ -205,6 +251,7 @@ const Transport = () => {
       features: ["Same-day delivery", "Package tracking", "Secure handling", "Multiple locations"],
       price: "Starting at ₹49",
       popular: false,
+      color: "bg-teal-500",
     },
     {
       icon: Car,
@@ -213,6 +260,7 @@ const Transport = () => {
       features: ["Scheduled routes", "Regular service", "Bulk booking", "Corporate packages"],
       price: "Starting at ₹199",
       popular: false,
+      color: "bg-cyan-500",
     },
   ];
 
@@ -239,9 +287,9 @@ const Transport = () => {
       name: "Amit Patel",
       role: "Logistics Manager",
       location: "Ahmedabad",
-      service: "Truck Rental",
+      service: "Truck & Lorry",
       rating: 5,
-      text: "Reliable truck services for our logistics needs. Timely delivery and professional handling. YAAN has become our trusted partner.",
+      text: "Reliable truck and lorry services for our logistics needs. Timely delivery and professional handling. YAAN has become our trusted partner.",
       initials: "AP",
     },
   ];
@@ -250,7 +298,7 @@ const Transport = () => {
     <>
       {showAnimation && <LandingAnimation onComplete={handleAnimationComplete} />}
       <div className={showAnimation ? "invisible" : "visible"}>
-        <Header />
+      <Header />
         <main className="min-h-screen bg-white relative z-0">
           {/* Hero Section - Jeton Style */}
           <section ref={heroRef} className="relative min-h-screen flex items-center justify-center py-20 px-4 md:px-8 overflow-hidden">
@@ -269,7 +317,7 @@ const Transport = () => {
                     <span className="text-[#0066FF]">One app for</span>
                     <br />
                     <span className="text-gray-900">all your transport needs</span>
-                  </h1>
+            </h1>
                   
                   <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
                     Single account for all your transportation services.
@@ -293,11 +341,15 @@ const Transport = () => {
                     className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
                   >
                     <div>
-                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">10K+</div>
+                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">
+                        <AnimatedCounter target={500} suffix="+" />
+                      </div>
                       <div className="text-gray-600">Happy Customers</div>
                     </div>
                     <div>
-                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">500+</div>
+                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">
+                        <AnimatedCounter target={50} suffix="+" />
+                      </div>
                       <div className="text-gray-600">Verified Drivers</div>
                     </div>
                     <div>
@@ -305,18 +357,20 @@ const Transport = () => {
                       <div className="text-gray-600">Support</div>
                     </div>
                     <div>
-                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">4.8</div>
+                      <div className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2">
+                        <AnimatedCounter target={4.7} decimals={1} />
+                      </div>
                       <div className="text-gray-600">Average Rating</div>
                     </div>
                   </motion.div>
                 </motion.div>
               </div>
-            </div>
-          </section>
+          </div>
+        </section>
 
           {/* Unify Your Transport Section */}
           <section className="py-20 px-4 md:px-8 bg-white relative z-10">
-            <div className="container mx-auto">
+          <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -350,7 +404,7 @@ const Transport = () => {
                           <Icon className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-900 text-center mb-2">
-                          {service.title}
+                    {service.title}
                         </h3>
                         <p className="text-sm text-gray-600 text-center">
                           {service.description}
@@ -416,10 +470,10 @@ const Transport = () => {
               >
                 <Card className="p-8 md:p-12 bg-gradient-to-br from-[#0066FF] to-blue-700 text-white border-0">
                   <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                    Add or send in a few taps
+                    Book your ride in a few taps
                   </h3>
                   <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-                    Easily add or send money from your account. 50+ payment methods across India.
+                    Easily book any transport service from your account. Multiple payment methods available across India.
                   </p>
                   <Button
                     size="lg"
@@ -452,6 +506,7 @@ const Transport = () => {
               </motion.div>
 
               <div className="max-w-6xl mx-auto">
+                {/* Step Buttons */}
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                   {steps.map((step, index) => (
                     <motion.button
@@ -462,12 +517,52 @@ const Transport = () => {
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-6 py-3 rounded-lg font-semibold bg-[#0066FF] text-white border-2 border-[#0066FF]"
+                      onClick={() => setActiveStep(index)}
+                      className={`w-20 h-20 rounded-lg font-semibold border-2 transition-all duration-300 flex flex-col items-center justify-center ${
+                        activeStep === index
+                          ? "bg-[#0066FF] text-white border-[#0066FF]"
+                          : "bg-white text-gray-700 border-gray-300 hover:border-[#0066FF]"
+                      }`}
                     >
-                      <span className="text-sm md:text-base">{step.number}</span>
-                      <span className="block text-xs mt-1">{step.title}</span>
+                      <span className="text-sm md:text-base font-bold">{step.number}</span>
+                      <span className="text-xs mt-1">{step.title}</span>
                     </motion.button>
                   ))}
+                </div>
+
+                {/* Active Step Card */}
+                <div className="flex justify-center">
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full max-w-2xl"
+                  >
+                    <Card className="p-8 md:p-10 border-2 border-[#0066FF] transition-all duration-300 bg-white shadow-lg">
+                      <div className="flex items-start gap-6">
+                        <div className="w-20 h-20 rounded-full bg-[#0066FF] flex items-center justify-center flex-shrink-0">
+                          <span className="text-3xl font-bold text-white">
+                            {steps[activeStep].number}
+                          </span>
+                        </div>
+                        <div className="flex-1 text-left">
+                          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                            {steps[activeStep].title}
+                          </h3>
+                          <p className="text-lg text-gray-600 mb-6">{steps[activeStep].description}</p>
+                          <ul className="space-y-3">
+                            {steps[activeStep].features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-3 text-base md:text-lg text-gray-700">
+                                <CheckCircle2 className="w-5 h-5 text-[#0066FF] flex-shrink-0 mt-0.5" />
+                                <span className="text-left">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -483,7 +578,6 @@ const Transport = () => {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12"
               >
-                <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200">POPULAR</Badge>
                 <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
                   Services Tailored For You
                 </h2>
@@ -504,15 +598,15 @@ const Transport = () => {
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       whileHover={{ y: -8 }}
                     >
-                      <Card className="p-6 h-full border-2 border-gray-200 hover:border-[#0066FF] transition-all duration-300 bg-white hover:shadow-xl">
+                      <Card className="p-6 h-full border-2 border-gray-200 hover:border-[#0066FF] transition-all duration-300 bg-white hover:shadow-xl relative">
                         {service.popular && (
-                          <Badge className="absolute top-4 right-4 bg-[#0066FF] text-white">
+                          <Badge className="absolute top-4 right-4 bg-[#0066FF] text-white z-10">
                             Popular
                           </Badge>
                         )}
                         <div className="flex items-start justify-between mb-4">
-                          <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
-                            <Icon className="w-7 h-7 text-[#0066FF]" />
+                          <div className={`w-14 h-14 rounded-xl ${service.color} flex items-center justify-center`}>
+                            <Icon className="w-7 h-7 text-white" />
                           </div>
                           <div className="flex items-center gap-1 text-sm">
                             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -528,13 +622,13 @@ const Transport = () => {
                         </h3>
                         <p className="text-gray-600 mb-4">{service.description}</p>
                         <ul className="space-y-2 mb-4">
-                          {service.features.map((feature, idx) => (
+                    {service.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
                               <CheckCircle2 className="w-4 h-4 text-[#0066FF] flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                         <div className="pt-4 border-t border-gray-200">
                           <div className="flex items-center justify-between">
                             <div>
@@ -549,7 +643,7 @@ const Transport = () => {
                             </Button>
                           </div>
                         </div>
-                      </Card>
+                </Card>
                     </motion.div>
                   );
                 })}
@@ -611,14 +705,14 @@ const Transport = () => {
                       <p className="text-gray-700 italic leading-relaxed">"{testimonial.text}"</p>
                     </Card>
                   </motion.div>
-                ))}
-              </div>
+              ))}
             </div>
-          </section>
+          </div>
+        </section>
 
           {/* Final CTA */}
           <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-[#0066FF] to-blue-700 text-white relative z-10">
-            <div className="container mx-auto text-center">
+          <div className="container mx-auto text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -626,8 +720,8 @@ const Transport = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                  1 million users, plus you.
-                </h2>
+                  <AnimatedCounter target={500} suffix="+" /> users, plus you.
+            </h2>
                 <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
                   It only takes few seconds to get started.
                 </p>
@@ -642,24 +736,24 @@ const Transport = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="text-lg px-8 h-14 border-2 border-white text-white hover:bg-white/10"
+                    className="text-lg px-8 h-14 border-2 border-white bg-transparent text-white hover:bg-white/10 hover:text-white"
                   >
                     Sign up
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="text-lg px-8 h-14 border-2 border-white text-white hover:bg-white/10"
+                    className="text-lg px-8 h-14 border-2 border-white bg-transparent text-white hover:bg-white/10 hover:text-white"
                   >
                     Login
-                  </Button>
+            </Button>
                 </div>
               </motion.div>
-            </div>
-          </section>
+          </div>
+        </section>
 
           <TransportFooter />
-        </main>
+      </main>
       </div>
     </>
   );
