@@ -87,33 +87,33 @@ All colors MUST be HSL.
     0% {
       transform: translateX(-100vw) translateY(0) rotate(5deg);
     }
-    40% {
+    30% {
       transform: translateX(calc(50vw - 100px)) translateY(0) rotate(0deg);
     }
-    60% {
+    50% {
       transform: translateX(calc(50vw - 100px)) translateY(0) rotate(0deg);
     }
     100% {
-      transform: translateX(100vw) translateY(-40vh) rotate(5deg);
+      transform: translateX(150vw) translateY(-45vh) rotate(5deg);
     }
   }
 
-  @keyframes logoFloat {
+  @keyframes logoCarried {
     0% {
-      transform: translateY(0) scale(1.5);
-      opacity: 0;
-    }
-    20% {
+      transform: translateX(-100vw) translateY(80px) scale(1.5);
       opacity: 1;
     }
-    40% {
-      transform: translateY(0) scale(1.5);
+    30% {
+      transform: translateX(calc(50vw - 100px)) translateY(80px) scale(1.5);
     }
-    60% {
-      transform: translateY(0) scale(1.5);
+    50% {
+      transform: translateX(calc(50vw - 100px)) translateY(80px) scale(1.5);
+    }
+    70% {
+      transform: translateX(20vw) translateY(-45vh) scale(0.6);
     }
     100% {
-      transform: translateY(-40vh) translateX(calc(-50vw + 150px)) scale(0.5);
+      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(0.6);
       opacity: 1;
     }
   }
