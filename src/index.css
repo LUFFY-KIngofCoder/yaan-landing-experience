@@ -87,30 +87,45 @@ All colors MUST be HSL.
     0% {
       transform: translateX(-100vw) translateY(0) rotate(5deg);
     }
-    30% {
-      transform: translateX(calc(50vw - 100px)) translateY(0) rotate(0deg);
+    20% {
+      transform: translateX(-40px) translateY(0) rotate(0deg);
     }
-    50% {
-      transform: translateX(calc(50vw - 100px)) translateY(0) rotate(0deg);
+    35% {
+      transform: translateX(100vw) translateY(0) rotate(5deg);
+    }
+    45% {
+      transform: translateX(100vw) translateY(-45vh) rotate(-5deg);
+    }
+    70% {
+      transform: translateX(calc(-50vw + 150px)) translateY(-45vh) rotate(-5deg);
+    }
+    80% {
+      transform: translateX(calc(-50vw + 150px)) translateY(-45vh) rotate(-5deg);
     }
     100% {
-      transform: translateX(150vw) translateY(-45vh) rotate(5deg);
+      transform: translateX(-100vw) translateY(-45vh) rotate(-5deg);
     }
   }
 
   @keyframes logoCarried {
     0% {
-      transform: translateX(-100vw) translateY(80px) scale(1.5);
+      transform: translateX(0) translateY(0) scale(1.5);
       opacity: 1;
     }
-    30% {
-      transform: translateX(calc(50vw - 100px)) translateY(80px) scale(1.5);
+    20% {
+      transform: translateX(0) translateY(80px) scale(1.5);
     }
-    50% {
-      transform: translateX(calc(50vw - 100px)) translateY(80px) scale(1.5);
+    35% {
+      transform: translateX(100vw) translateY(80px) scale(1.5);
+    }
+    45% {
+      transform: translateX(100vw) translateY(-45vh) scale(1.5);
     }
     70% {
-      transform: translateX(20vw) translateY(-45vh) scale(0.6);
+      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(1.5);
+    }
+    80% {
+      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(0.6);
     }
     100% {
       transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(0.6);
