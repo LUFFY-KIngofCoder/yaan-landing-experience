@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
@@ -36,9 +35,10 @@ const Header = () => {
       <header className="sticky top-0 z-40 w-full bg-background border-b border-border shadow-sm">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link
-            to="/"
-            onClick={scrollToTop}
+          <a
+            href="https://yann1.odoo.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img
@@ -47,7 +47,7 @@ const Header = () => {
               className="h-12 w-auto"
               style={{ maxHeight: "48px" }}
             />
-          </Link>
+          </a>
 
           {/* Navigation Items */}
           <div className="flex items-center gap-4">
