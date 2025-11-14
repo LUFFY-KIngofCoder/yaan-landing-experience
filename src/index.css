@@ -83,6 +83,19 @@ All colors MUST be HSL.
     }
   }
 
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   /* Car Journey Animation: Left -> Right (continuous) -> Header Right -> Header Left -> Exit */
   @keyframes carJourney {
     /* Phase 1: Car enters from left side and continuously moves right pushing logo */
