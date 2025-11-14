@@ -11,10 +11,10 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
 
   useEffect(() => {
     if (!isSkipped) {
-      // Animation duration is 4 seconds
+      // Animation duration is 4.5 seconds
       const timer = setTimeout(() => {
         onComplete();
-      }, 4000);
+      }, 4500);
 
       return () => clearTimeout(timer);
     }
@@ -43,11 +43,11 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
         Skip
       </Button>
 
-      {/* YAAN Logo */}
+      {/* YAAN Logo - carried by plane */}
       <div
-        className="absolute text-8xl font-bold text-primary tracking-wider"
+        className="absolute text-7xl md:text-8xl font-bold text-primary tracking-wider"
         style={{
-          animation: isSkipped ? "none" : "logoFloat 4s ease-in-out forwards",
+          animation: isSkipped ? "none" : "logoCarried 4.5s ease-in-out forwards",
         }}
       >
         YAAN
@@ -57,7 +57,7 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
       <div
         className="absolute text-primary"
         style={{
-          animation: isSkipped ? "none" : "flyPlane 4s ease-in-out forwards",
+          animation: isSkipped ? "none" : "flyPlane 4.5s ease-in-out forwards",
         }}
       >
         <Plane size={80} className="rotate-12" />
