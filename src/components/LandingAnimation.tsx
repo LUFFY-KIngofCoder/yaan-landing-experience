@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plane } from "lucide-react";
+import { Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface LandingAnimationProps {
@@ -43,7 +43,7 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
         Skip
       </Button>
 
-      {/* YAAN Logo - carried by plane */}
+      {/* YAAN Logo - carried by car */}
       <div
         className="absolute text-7xl md:text-8xl font-bold text-primary tracking-wider"
         style={{
@@ -53,14 +53,14 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
         YAAN
       </div>
 
-      {/* Animated Plane */}
+      {/* Animated Car */}
       <div
         className="absolute text-primary"
         style={{
           animation: isSkipped ? "none" : "flyPlane 4.5s ease-in-out forwards",
         }}
       >
-        <Plane size={80} className="rotate-12" />
+        <Car size={80} />
       </div>
     </div>
   );
