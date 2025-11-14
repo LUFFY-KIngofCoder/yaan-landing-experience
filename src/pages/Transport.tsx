@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import LandingAnimation from "@/components/LandingAnimation";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Car, Calendar, Shield, MapPin } from "lucide-react";
 
 const Transport = () => {
+  const [showAnimation, setShowAnimation] = useState(true);
+
+  const handleAnimationComplete = () => {
+    setShowAnimation(false);
+  };
   const services = [
     {
       icon: Car,
@@ -34,8 +41,10 @@ const Transport = () => {
 
   return (
     <>
-      <Header />
-      <main className="min-h-screen bg-background">
+      {showAnimation && <LandingAnimation onComplete={handleAnimationComplete} />}
+      <div className={showAnimation ? "invisible" : "visible"}>
+        <Header />
+        <main className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-cloud-transport to-background py-20 px-4 md:px-8">
           <div className="container mx-auto">
@@ -95,6 +104,7 @@ const Transport = () => {
           </div>
         </section>
       </main>
+      </div>
     </>
   );
 };

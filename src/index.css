@@ -83,58 +83,160 @@ All colors MUST be HSL.
     }
   }
 
-  @keyframes flyPlane {
+  /* Car Journey Animation: Left -> Right (continuous) -> Header Right -> Header Left -> Exit */
+  @keyframes carJourney {
+    /* Phase 1: Car enters from left side and continuously moves right pushing logo */
     0% {
-      transform: translateX(-100vw) translateY(0) rotate(5deg);
-    }
-    20% {
-      transform: translateX(-40px) translateY(0) rotate(0deg);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateX(calc(-50vw - 150px)) scale(0.8);
     }
     35% {
-      transform: translateX(100vw) translateY(0) rotate(5deg);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateX(calc(50vw + 300px)) scale(0.8);
     }
-    45% {
-      transform: translateX(100vw) translateY(-45vh) rotate(-5deg);
+    /* Phase 2: Car instantly appears from right side of header (top) - mirrored */
+    35.1% {
+      left: calc(100% + 100px);
+      top: 80px;
+      transform: translateY(-50%) scaleX(-1) scale(0.6);
+    }
+    /* Phase 3: Car moves left with logo in header area */
+    50% {
+      left: calc(100% + 100px);
+      top: 80px;
+      transform: translateY(-50%) scaleX(-1) scale(0.6);
     }
     70% {
-      transform: translateX(calc(-50vw + 150px)) translateY(-45vh) rotate(-5deg);
+      left: 80px;
+      top: 80px;
+      transform: translateY(-50%) scaleX(-1) scale(0.6);
     }
-    80% {
-      transform: translateX(calc(-50vw + 150px)) translateY(-45vh) rotate(-5deg);
+    /* Phase 4: Car drops logo and exits */
+    85% {
+      left: -150px;
+      top: 80px;
+      transform: translateY(-50%) scaleX(-1) scale(0.5);
     }
     100% {
-      transform: translateX(-100vw) translateY(-45vh) rotate(-5deg);
+      left: -150px;
+      top: 80px;
+      transform: translateY(-50%) scaleX(-1) scale(0.5);
     }
   }
 
-  @keyframes logoCarried {
+  /* Logo Journey Animation: Appears in center -> Pushed right by car (from left) -> Pushed left by car in header */
+  @keyframes logoJourney {
+    /* Phase 1: Logo appears in center */
     0% {
-      transform: translateX(0) translateY(0) scale(1.5);
-      opacity: 1;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateX(0) scale(2);
     }
-    20% {
-      transform: translateX(0) translateY(80px) scale(1.5);
+    /* Phase 2: Car continuously pushes logo from left side to right - logo trails behind car */
+    10% {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateX(-80px) scale(1.8);
     }
     35% {
-      transform: translateX(100vw) translateY(80px) scale(1.5);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateX(calc(50vw + 200px)) scale(1.5);
     }
-    45% {
-      transform: translateX(100vw) translateY(-45vh) scale(1.5);
+    /* Phase 3: Logo instantly appears in header area, positioned ahead of car (car pushing from behind) */
+    35.1% {
+      left: calc(100% + 250px);
+      top: 80px;
+      transform: translateY(-50%) scale(0.5);
     }
+    50% {
+      left: calc(100% + 250px);
+      top: 80px;
+      transform: translateY(-50%) scale(0.5);
+    }
+    /* Phase 4: Car pushes logo left - logo is ahead of car (to the right, since car is pushing) */
     70% {
-      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(1.5);
+      left: 140px;
+      top: 80px;
+      transform: translateY(-50%) scale(0.4);
     }
-    80% {
-      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(0.6);
+    /* Phase 5: Logo stops at header position, car continues and exits */
+    85% {
+      left: 80px;
+      top: 80px;
+      transform: translateY(-50%) scale(0.4);
     }
     100% {
-      transform: translateX(calc(-50vw + 120px)) translateY(-45vh) scale(0.6);
+      left: 80px;
+      top: 80px;
+      transform: translateY(-50%) scale(0.4);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes roadLine {
+    0% {
+      transform: translateY(0) scaleY(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) scaleY(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-40px) scaleY(1);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes floatParticle {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.4;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px) scale(1.2);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-40px) translateX(-10px) scale(0.8);
+      opacity: 0.3;
+    }
+    75% {
+      transform: translateY(-20px) translateX(5px) scale(1.1);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes sparkle {
+    0%, 100% {
+      transform: scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
       opacity: 1;
     }
   }
 
   @keyframes fadeOut {
-    to {
+    0% {
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
       opacity: 0;
       visibility: hidden;
     }
@@ -148,5 +250,21 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Preserve original colors in SVG images */
+  img[src$=".svg"],
+  img[src*="logo"] {
+    color: initial !important;
+    fill: initial !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+  
+  /* Prevent color inheritance for logo container */
+  .logo-container,
+  .logo-container * {
+    color: initial !important;
+    fill: initial !important;
   }
 }
