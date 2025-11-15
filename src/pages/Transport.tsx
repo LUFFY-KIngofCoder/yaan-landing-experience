@@ -371,7 +371,7 @@ const Transport = () => {
         </section>
 
           {/* Unify Your Transport Section */}
-          <section className="py-20 px-4 md:px-8 bg-white relative z-10">
+          <section className="py-20 px-4 md:px-8 bg-background/50 backdrop-blur-sm relative z-10">
           <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -420,7 +420,7 @@ const Transport = () => {
           </section>
 
           {/* All Services, One App Section */}
-          <section className="py-20 px-4 md:px-8 bg-white relative z-10">
+          <section className="py-20 px-4 md:px-8 bg-background/30 backdrop-blur-sm relative z-10">
             <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -490,7 +490,7 @@ const Transport = () => {
           </section>
 
           {/* Step-by-Step Process */}
-          <section className="py-20 px-4 md:px-8 bg-white relative z-10">
+          <section className="py-20 px-4 md:px-8 bg-background/50 backdrop-blur-sm relative z-10">
             <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -571,7 +571,7 @@ const Transport = () => {
           </section>
 
           {/* All Services Grid */}
-          <section className="py-20 px-4 md:px-8 bg-white relative z-10">
+          <section className="py-20 px-4 md:px-8 bg-background/30 backdrop-blur-sm relative z-10">
             <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -654,7 +654,7 @@ const Transport = () => {
           </section>
 
           {/* Testimonials */}
-          <section className="py-20 px-4 md:px-8 bg-white relative z-10">
+          <section className="py-20 px-4 md:px-8 bg-background/50 backdrop-blur-sm relative z-10">
             <div className="container mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}

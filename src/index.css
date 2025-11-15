@@ -130,8 +130,8 @@ All colors MUST be HSL.
       top: 80px;
       transform: translateY(-50%) scaleX(-1) scale(0.6);
     }
-    /* Phase 4: Car drops logo and exits */
-    85% {
+    /* Phase 4: Car drops logo and exits - reduced delay */
+    95% {
       left: -150px;
       top: 80px;
       transform: translateY(-50%) scaleX(-1) scale(0.5);
@@ -165,30 +165,32 @@ All colors MUST be HSL.
     /* Phase 3: Logo instantly appears in header area, positioned ahead of car (car pushing from behind) */
     35.1% {
       left: calc(100% + 250px);
-      top: 80px;
+      top: 40px;
       transform: translateY(-50%) scale(0.5);
     }
     50% {
       left: calc(100% + 250px);
-      top: 80px;
+      top: 40px;
       transform: translateY(-50%) scale(0.5);
     }
     /* Phase 4: Car pushes logo left - logo is ahead of car (to the right, since car is pushing) */
     70% {
-      left: 140px;
-      top: 80px;
-      transform: translateY(-50%) scale(0.4);
+      left: 110px;
+      top: 40px;
+      transform: translateY(-50%) scale(0.36);
     }
-    /* Phase 5: Logo stops at header position, car continues and exits */
-    85% {
-      left: 80px;
-      top: 80px;
-      transform: translateY(-50%) scale(0.4);
+    /* Phase 5: Logo smoothly transitions to exact header position - reduced delay */
+    95% {
+      left: 32px;
+      top: 40px;
+      transform: translateY(-50%) scale(0.32);
+      opacity: 1;
     }
     100% {
-      left: 80px;
-      top: 80px;
-      transform: translateY(-50%) scale(0.4);
+      left: 32px;
+      top: 40px;
+      transform: translateY(-50%) scale(0.32);
+      opacity: 0;
     }
   }
 

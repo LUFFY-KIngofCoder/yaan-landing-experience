@@ -141,6 +141,7 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
           animation: isSkipped ? "none" : "logoJourney 6.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
           filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.3))",
           color: "initial",
+          transition: "opacity 0.3s ease-out",
         }}
       >
         <LogoImage />
