@@ -4,6 +4,7 @@ import { useRef } from "react";
 import LandingAnimation from "@/components/LandingAnimation";
 import Header from "@/components/Header";
 import TransportFooter from "@/components/TransportFooter";
+import DynamicBackground from "@/components/DynamicBackground";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -296,10 +297,11 @@ const Transport = () => {
 
   return (
     <>
+      <DynamicBackground />
       {showAnimation && <LandingAnimation onComplete={handleAnimationComplete} />}
       <div className={showAnimation ? "invisible" : "visible"}>
       <Header />
-        <main className="min-h-screen bg-white relative z-0">
+        <main className="min-h-screen bg-transparent relative z-0">
           {/* Hero Section - Jeton Style */}
           <section ref={heroRef} className="relative min-h-screen flex items-center justify-center py-20 px-4 md:px-8 overflow-hidden">
             <div className="container mx-auto relative z-10">
