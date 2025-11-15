@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Heart, Clock, Shield, Users } from "lucide-react";
+import DynamicBackground from "@/components/DynamicBackground";
 
 const HomeCare = () => {
   const services = [
@@ -34,6 +35,7 @@ const HomeCare = () => {
 
   return (
     <>
+      <DynamicBackground />
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero Section */}
