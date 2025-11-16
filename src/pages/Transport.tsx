@@ -5,6 +5,7 @@ import LandingAnimation from "@/components/LandingAnimation";
 import Header from "@/components/Header";
 import TransportFooter from "@/components/TransportFooter";
 import DynamicBackground from "@/components/DynamicBackground";
+import ImageViewer from "@/components/ImageViewer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -711,6 +712,9 @@ const Transport = () => {
             </div>
           </div>
         </section>
+
+          {/* Image Gallery */}
+          <ImageViewer />
 
           {/* Final CTA */}
           <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-[#0066FF] to-blue-700 text-white relative z-10">
