@@ -1,31 +1,39 @@
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
 
 const DynamicBackground = () => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentSection, setCurrentSection] = useState(0);
   
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // Throttle refs
+  const lastScrollTime = useRef(0);
+  const lastMouseTime = useRef(0);
+  const throttleDelay = 50; // 50ms throttle for performance
+
+  const handleScroll = useCallback(() => {
+    const now = Date.now();
+    if (now - lastScrollTime.current < throttleDelay) return;
+    lastScrollTime.current = now;
+
+    setScrollY(window.scrollY);
+    
+    // Determine current section based on scroll position
+    const windowHeight = window.innerHeight;
+    const section = Math.floor(window.scrollY / windowHeight);
+    setCurrentSection(Math.min(section, 3)); // Max 4 sections (0-3)
+  }, []);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now();
+    if (now - lastMouseTime.current < throttleDelay) return;
+    lastMouseTime.current = now;
+
+    const { clientX, clientY } = e;
+    setMousePosition({ x: clientX, y: clientY });
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
-      // Determine current section based on scroll position
-      const windowHeight = window.innerHeight;
-      const section = Math.floor(window.scrollY / windowHeight);
-      setCurrentSection(Math.min(section, 3)); // Max 4 sections (0-3)
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      setMousePosition({ x: clientX, y: clientY });
-      mouseX.set(clientX);
-      mouseY.set(clientY);
-    };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     
@@ -33,16 +41,15 @@ const DynamicBackground = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [mouseX, mouseY]);
+  }, [handleScroll, handleMouseMove]);
 
-  // Calculate parallax offsets
-  const layer1Offset = scrollY * 0.3;
-  const layer2Offset = scrollY * 0.5;
-  const layer3Offset = scrollY * 0.7;
+  // Calculate parallax offsets (reduced for better performance)
+  const layer1Offset = scrollY * 0.2;
+  const layer2Offset = scrollY * 0.3;
   
-  // Mouse parallax effect
-  const mouseParallaxX = (mousePosition.x - window.innerWidth / 2) * 0.02;
-  const mouseParallaxY = (mousePosition.y - window.innerHeight / 2) * 0.02;
+  // Mouse parallax effect (reduced intensity for smoother performance)
+  const mouseParallaxX = (mousePosition.x - window.innerWidth / 2) * 0.01;
+  const mouseParallaxY = (mousePosition.y - window.innerHeight / 2) * 0.01;
 
   // Section-based color themes
   const themes = [
@@ -75,6 +82,7 @@ const DynamicBackground = () => {
       {/* Animated gradient background with section-based colors */}
       <motion.div
         className="absolute inset-0"
+        style={{ willChange: "background" }}
         animate={{
           background: [
             `radial-gradient(circle at 20% 30%, ${currentTheme.primary}, transparent 50%), 
@@ -93,16 +101,16 @@ const DynamicBackground = () => {
         }}
       />
 
-      {/* Floating circles - Layer 1 (slowest) with mouse interaction */}
+      {/* Floating circles - Layer 1 (optimized) */}
       <motion.div
         className="absolute top-20 left-10 w-64 h-64 rounded-full blur-3xl transition-colors duration-1000"
         style={{
-          transform: `translateY(${layer1Offset}px) translateX(${mouseParallaxX * 2}px) translateY(${mouseParallaxY * 2}px)`,
+          transform: `translate3d(${mouseParallaxX * 2}px, ${layer1Offset + mouseParallaxY * 2}px, 0)`,
           backgroundColor: currentTheme.primary,
+          willChange: "transform",
         }}
         animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 60, 0],
+          scale: [1, 1.2, 1],
         }}
         transition={{
           duration: 8,
@@ -114,12 +122,12 @@ const DynamicBackground = () => {
       <motion.div
         className="absolute top-40 right-20 w-96 h-96 rounded-full blur-3xl transition-colors duration-1000"
         style={{
-          transform: `translateY(${layer1Offset}px) translateX(${-mouseParallaxX * 2}px) translateY(${-mouseParallaxY * 2}px)`,
+          transform: `translate3d(${-mouseParallaxX * 2}px, ${layer1Offset - mouseParallaxY * 2}px, 0)`,
           backgroundColor: currentTheme.secondary,
+          willChange: "transform",
         }}
         animate={{
-          scale: [1, 1.4, 1],
-          x: [0, -80, 0],
+          scale: [1, 1.3, 1],
         }}
         transition={{
           duration: 10,
@@ -128,33 +136,15 @@ const DynamicBackground = () => {
         }}
       />
 
-      {/* Floating circles - Layer 2 (medium speed) with mouse interaction */}
       <motion.div
         className="absolute bottom-40 left-1/4 w-80 h-80 rounded-full blur-2xl transition-colors duration-1000"
         style={{
-          transform: `translateY(-${layer2Offset}px) translateX(${mouseParallaxX * 3}px) translateY(${mouseParallaxY * 3}px)`,
+          transform: `translate3d(${mouseParallaxX * 2}px, ${-layer2Offset + mouseParallaxY * 2}px, 0)`,
           backgroundColor: currentTheme.accent,
+          willChange: "transform",
         }}
         animate={{
-          scale: [1, 1.5, 1],
-          y: [0, 60, 0],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute top-1/3 right-1/3 w-72 h-72 rounded-full blur-2xl transition-colors duration-1000"
-        style={{
-          transform: `translateY(${layer2Offset}px) translateX(${-mouseParallaxX * 3}px) translateY(${-mouseParallaxY * 3}px)`,
-          backgroundColor: currentTheme.primary,
-        }}
-        animate={{
-          scale: [1, 1.35, 1],
-          x: [0, 50, 0],
+          scale: [1, 1.4, 1],
         }}
         transition={{
           duration: 9,
@@ -163,68 +153,27 @@ const DynamicBackground = () => {
         }}
       />
 
-      {/* Additional floating shapes */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full blur-3xl transition-colors duration-1000"
-        style={{
-          transform: `translateY(${layer1Offset * 0.8}px) translateX(${mouseParallaxX * 4}px) translateY(${mouseParallaxY * 4}px)`,
-          backgroundColor: currentTheme.secondary,
-        }}
-        animate={{
-          scale: [1, 1.4, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Floating particles - Layer 3 (fastest) - More particles with mouse interaction */}
-      {[...Array(20)].map((_, i) => (
+      {/* Floating particles - Optimized (reduced from 20 to 6) */}
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full transition-colors duration-1000"
           style={{
-            left: `${(i * 5) + 5}%`,
-            top: `${(i * 4) + 5}%`,
-            width: `${4 + (i % 3) * 2}px`,
-            height: `${4 + (i % 3) * 2}px`,
-            transform: `translateY(${layer3Offset}px) translateX(${mouseParallaxX * (5 + i % 3)}px) translateY(${mouseParallaxY * (5 + i % 3)}px)`,
-            backgroundColor: i % 3 === 0 ? currentTheme.primary : i % 3 === 1 ? currentTheme.secondary : currentTheme.accent,
+            left: `${(i * 15) + 10}%`,
+            top: `${(i * 12) + 10}%`,
+            width: `${6 + (i % 2) * 2}px`,
+            height: `${6 + (i % 2) * 2}px`,
+            transform: `translate3d(${mouseParallaxX * (3 + i)}px, ${layer2Offset + mouseParallaxY * (3 + i)}px, 0)`,
+            backgroundColor: i % 2 === 0 ? currentTheme.primary : currentTheme.secondary,
+            willChange: "transform, opacity",
           }}
           animate={{
-            y: [0, -40 - (i % 3) * 10, 0],
-            x: [0, 30 - (i % 2) * 60, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.8, 1],
-          }}
-          transition={{
-            duration: 3 + (i * 0.3),
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.15,
-          }}
-        />
-      ))}
-
-      {/* Interactive cursor followers */}
-      {[...Array(5)].map((_, i) => (
-        <motion.div
-          key={`cursor-${i}`}
-          className="absolute w-8 h-8 rounded-full blur-xl transition-colors duration-1000"
-          style={{
-            left: mousePosition.x - 16,
-            top: mousePosition.y - 16,
-            backgroundColor: currentTheme.accent,
-          }}
-          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.7, 0.3],
             scale: [1, 1.5, 1],
-            opacity: [0.1, 0.3, 0.1],
           }}
           transition={{
-            duration: 2,
+            duration: 4 + i,
             repeat: Infinity,
             ease: "easeInOut",
             delay: i * 0.3,
@@ -232,50 +181,53 @@ const DynamicBackground = () => {
         />
       ))}
 
-      {/* Road-like animated lines - Faster */}
-      {[...Array(8)].map((_, i) => (
+
+      {/* Road-like animated lines - Optimized (reduced from 8 to 4) */}
+      {[...Array(4)].map((_, i) => (
         <motion.div
           key={`line-${i}`}
           className="absolute w-1 transition-colors duration-1000"
           style={{
-            left: `${(i * 12) + 8}%`,
-            height: "250px",
-            transform: `translateY(${layer2Offset * 1.5}px)`,
-            background: `linear-gradient(to bottom, transparent, ${currentTheme.primary.replace('0.12', '0.3')}, transparent)`,
+            left: `${(i * 25) + 12}%`,
+            height: "200px",
+            transform: `translate3d(0, ${layer2Offset}px, 0)`,
+            background: `linear-gradient(to bottom, transparent, ${currentTheme.primary.replace('0.12', '0.25')}, transparent)`,
+            willChange: "transform, opacity",
           }}
           animate={{
-            y: [-250, 1000],
-            opacity: [0, 0.7, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "linear",
-            delay: i * 0.8,
-          }}
-        />
-      ))}
-
-      {/* Diagonal animated lines */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={`diag-${i}`}
-          className="absolute h-1 w-32 transition-colors duration-1000"
-          style={{
-            left: `${(i * 15) + 5}%`,
-            top: `${(i * 12) + 10}%`,
-            transform: `rotate(45deg) translateX(${mouseParallaxX}px)`,
-            background: `linear-gradient(to right, transparent, ${currentTheme.accent.replace('0.06', '0.4')}, transparent)`,
-          }}
-          animate={{
-            x: [-100, 800],
+            y: [-200, 1000],
             opacity: [0, 0.6, 0],
           }}
           transition={{
             duration: 6,
             repeat: Infinity,
             ease: "linear",
-            delay: i * 1.2,
+            delay: i * 1.5,
+          }}
+        />
+      ))}
+
+      {/* Diagonal animated lines - Optimized (reduced from 6 to 3) */}
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={`diag-${i}`}
+          className="absolute h-1 w-32 transition-colors duration-1000"
+          style={{
+            left: `${(i * 30) + 10}%`,
+            top: `${(i * 20) + 15}%`,
+            transform: `rotate(45deg) translate3d(${mouseParallaxX}px, 0, 0)`,
+            background: `linear-gradient(to right, transparent, ${currentTheme.accent.replace('0.06', '0.35')}, transparent)`,
+            willChange: "transform, opacity",
+          }}
+          animate={{
+            x: [-100, 800],
+            opacity: [0, 0.5, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+            delay: i * 2,
           }}
         />
       ))}
