@@ -299,7 +299,7 @@ const Transport = () => {
     <>
       <DynamicBackground />
       {showAnimation && <LandingAnimation onComplete={handleAnimationComplete} />}
-      <div className={showAnimation ? "invisible" : "visible"}>
+      <div className={`transition-opacity duration-700 ${showAnimation ? "opacity-0 invisible" : "opacity-100 visible"}`}>
       <Header />
         <main className="min-h-screen bg-transparent relative z-0">
           {/* Hero Section - Jeton Style */}
