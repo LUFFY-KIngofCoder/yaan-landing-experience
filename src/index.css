@@ -179,7 +179,7 @@ All colors MUST be HSL.
       top: 40px;
       transform: translateY(-50%) scale(0.36);
     }
-    /* Phase 5: Logo smoothly transitions to exact header position - reduced delay */
+    /* Phase 5: Logo smoothly transitions to exact header position */
     95% {
       left: 32px;
       top: 40px;
@@ -190,7 +190,7 @@ All colors MUST be HSL.
       left: 32px;
       top: 40px;
       transform: translateY(-50%) scale(0.32);
-      opacity: 0;
+      opacity: 1;
     }
   }
 
@@ -258,6 +258,15 @@ All colors MUST be HSL.
     100% {
       opacity: 0;
       visibility: hidden;
+    }
+  }
+
+  @keyframes fadeOutSmooth {
+    0%, 90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 }

@@ -77,11 +77,11 @@ const LandingAnimation = ({ onComplete }: LandingAnimationProps) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-background ${
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-background transition-opacity duration-700 ${
         isSkipped ? "opacity-0" : ""
       }`}
       style={{
-        animation: isSkipped ? "fadeOut 0.5s ease-out" : "none",
+        animation: isSkipped ? "none" : "fadeOutSmooth 6.5s ease-out forwards",
       }}
     >
       {/* Animated Background Gradient */}
