@@ -15,7 +15,7 @@ const LibraryModal = ({ isOpen, onClose }: LibraryModalProps) => {
   useEffect(() => {
     // Load images from pics folder
     const loadedImages: string[] = [];
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 100; i++) {
       // Try both jpg and png extensions
       loadedImages.push(`/pics/${i}.jpg`);
       loadedImages.push(`/pics/${i}.png`);
