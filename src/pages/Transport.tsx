@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import LandingAnimation from "@/components/LandingAnimation";
 import Header from "@/components/Header";
 import TransportFooter from "@/components/TransportFooter";
 import DynamicBackground from "@/components/DynamicBackground";
@@ -55,14 +54,9 @@ const AnimatedCounter = ({ target, suffix = "", duration = 2000, decimals = 0 }:
 };
 
 const Transport = () => {
-  const [showAnimation, setShowAnimation] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
-
-  const handleAnimationComplete = () => {
-    setShowAnimation(false);
-  };
 
   const services = [
     {
@@ -299,8 +293,6 @@ const Transport = () => {
   return (
     <>
       <DynamicBackground />
-      {showAnimation && <LandingAnimation onComplete={handleAnimationComplete} />}
-      <div className={`transition-opacity duration-700 ${showAnimation ? "opacity-0 invisible" : "opacity-100 visible"}`}>
       <Header />
         <main className="min-h-screen bg-transparent relative z-0">
           {/* Hero Section - Jeton Style */}
@@ -760,7 +752,6 @@ const Transport = () => {
 
           <TransportFooter />
       </main>
-      </div>
     </>
   );
 };
