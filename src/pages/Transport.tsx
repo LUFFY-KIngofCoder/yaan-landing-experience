@@ -27,55 +27,70 @@ import {
 // Import service images
 import heroImage from "@/assets/transport-hero.jpg";
 import sedanImage from "@/assets/sedan-car.jpg";
-import tempoImage from "@/assets/tempo-traveller.jpg";
+import eRickshawImage from "@/assets/e-rickshaw.jpg";
+import weddingCarImage from "@/assets/wedding-car.jpg";
 import pickupImage from "@/assets/pickup-truck.jpg";
-import busImage from "@/assets/luxury-bus.jpg";
-import taxiImage from "@/assets/local-taxi.jpg";
-import airportImage from "@/assets/airport-transfer.jpg";
+import tempoImage from "@/assets/tempo-traveller.jpg";
+import parcelImage from "@/assets/parcel-service.jpg";
+import shuttleImage from "@/assets/shuttle-service.jpg";
 
 const Transport = () => {
   const services = [
     {
-      title: "Sedan / Hatchback",
-      description: "Comfortable rides for daily commute and short trips",
+      title: "Cab Ride",
+      description: "Quick and convenient cab rides for your daily commute",
       image: sedanImage,
-      price: "Starting at ₹199",
-      features: ["AC comfort", "Professional drivers", "GPS tracking"],
+      price: "Starting at ₹99",
+      features: ["24/7 Availability", "GPS Tracking", "Professional Drivers"],
     },
     {
-      title: "Tempo Traveller",
-      description: "Spacious vehicles for group travel and family trips",
-      image: tempoImage,
-      price: "Starting at ₹1,499",
-      features: ["12-20 seaters", "Long distance", "Group packages"],
+      title: "Cab Rental",
+      description: "Rent a cab for hours or days for your convenience",
+      image: sedanImage,
+      price: "Starting at ₹299/hr",
+      features: ["Hourly Rates", "Daily Packages", "Flexible Duration"],
     },
     {
-      title: "Goods Transport / Pickup",
-      description: "Reliable pickup trucks for cargo and goods movement",
+      title: "E-Rickshaw",
+      description: "Eco-friendly electric rickshaw rides for short distances",
+      image: eRickshawImage,
+      price: "Starting at ₹49",
+      features: ["Eco-Friendly", "Cost-Effective", "Local Routes"],
+    },
+    {
+      title: "Wedding Cars",
+      description: "Luxury wedding cars and fleet services for your special day",
+      image: weddingCarImage,
+      price: "Starting at ₹2,499",
+      features: ["Luxury Fleet", "Custom Decoration", "Professional Service"],
+    },
+    {
+      title: "Truck & Lorry",
+      description: "Commercial truck and lorry rental for goods transport",
       image: pickupImage,
       price: "Starting at ₹999",
-      features: ["Multiple tonnage", "Safe handling", "On-time delivery"],
+      features: ["Various Sizes", "Experienced Drivers", "Goods Insurance"],
     },
     {
-      title: "Bus Booking",
-      description: "Luxury coaches for outstation and intercity travel",
-      image: busImage,
-      price: "Starting at ₹2,999",
-      features: ["Luxury seating", "AC buses", "Long routes"],
+      title: "Traveller",
+      description: "Comfortable vehicles for group trips and family travel",
+      image: tempoImage,
+      price: "Starting at ₹1,499",
+      features: ["12-20 Seaters", "AC Vehicles", "Tour Packages"],
     },
     {
-      title: "Local Taxi Booking",
-      description: "Quick city rides at affordable rates",
-      image: taxiImage,
-      price: "Starting at ₹99",
-      features: ["Instant booking", "City-wide", "24/7 available"],
+      title: "Parcel",
+      description: "Fast and secure parcel delivery services",
+      image: parcelImage,
+      price: "Starting at ₹79",
+      features: ["Same-Day Delivery", "Real-Time Tracking", "Secure Handling"],
     },
     {
-      title: "Airport Drop / Pickup",
-      description: "Timely airport transfers with professional service",
-      image: airportImage,
-      price: "Starting at ₹499",
-      features: ["Flight tracking", "Meet & greet", "Luggage assistance"],
+      title: "Shuttle",
+      description: "Regular shuttle services for offices and schools",
+      image: shuttleImage,
+      price: "Starting at ₹199",
+      features: ["Fixed Routes", "Daily Service", "Corporate Plans"],
     },
   ];
 
@@ -156,7 +171,7 @@ const Transport = () => {
     },
   ];
 
-  const galleryImages = [heroImage, sedanImage, tempoImage, pickupImage, busImage, taxiImage, airportImage];
+  const galleryImages = [heroImage, sedanImage, eRickshawImage, weddingCarImage, pickupImage, tempoImage, parcelImage, shuttleImage];
 
   return (
     <div className="min-h-screen bg-background">
