@@ -42,8 +42,8 @@ const ContactSectionNew = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0" />
-                <a href="mailto:support@yaan.care" className="hover:underline">
-                  support@yaan.care
+                <a href="mailto:support@yann.care" className="hover:underline">
+                  support@yann.care
                 </a>
               </div>
             </div>
@@ -107,7 +107,7 @@ const ContactSectionNew = () => {
           <div>
             <h3 className="text-2xl font-bold mb-6">Follow Us</h3>
             <p className="mb-6 opacity-90">
-              Stay connected with YAAN on social media
+              Stay connected with YANN on social media
             </p>
             <div className="flex gap-4">
               <a
@@ -149,7 +149,7 @@ const ContactSectionNew = () => {
           className="mt-12 pt-8 border-t border-primary-foreground/20 text-center"
         >
           <p className="text-sm opacity-90">
-            © {new Date().getFullYear()} YAAN. All rights reserved. | Providing
+            © {new Date().getFullYear()} YANN. All rights reserved. | Providing
             quality care and transport services with compassion.
           </p>
         </motion.div>

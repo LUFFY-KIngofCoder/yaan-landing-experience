@@ -190,8 +190,8 @@ const TransportFooter = () => {
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="text-sm text-muted-foreground">Email Support</p>
-                    <a href="mailto:support@yaan.care" className="text-foreground font-semibold hover:text-primary transition-colors">
-                      support@yaan.care
+                    <a href="mailto:support@yann.care" className="text-foreground font-semibold hover:text-primary transition-colors">
+                      support@yann.care
                     </a>
                   </div>
                 </div>

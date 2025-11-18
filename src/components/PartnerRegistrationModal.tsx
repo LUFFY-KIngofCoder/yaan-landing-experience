@@ -146,7 +146,7 @@ const PartnerRegistrationModal = ({ isOpen, onClose, onSuccess }: PartnerRegistr
         </DialogHeader>
         <div className="space-y-4 py-4">
           <p className="text-center text-muted-foreground">
-            Join YAAN as a service partner and grow your business
+            Join YANN as a service partner and grow your business
           </p>
 
           {error && (
@@ -294,7 +294,7 @@ const PartnerRegistrationModal = ({ isOpen, onClose, onSuccess }: PartnerRegistr
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">
-              By registering, you agree to YAAN's Terms of Service and Privacy Policy
+              By registering, you agree to YANN's Terms of Service and Privacy Policy
             </div>
           </form>
         </div>

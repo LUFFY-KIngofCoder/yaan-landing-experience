@@ -20,7 +20,7 @@ const ContactSection = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 flex-shrink-0" />
-                <p>hello@yaan.care</p>
+                 <p>hello@yann.care</p>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@ const ContactSection = () => {
           {/* Social Media */}
           <div>
             <h3 className="text-2xl font-bold mb-6">Follow Us</h3>
-            <p className="mb-6">Stay connected with YAAN on social media</p>
+             <p className="mb-6">Stay connected with YANN on social media</p>
             <div className="flex gap-4">
               <Button
                 variant="outline"
@@ -90,9 +90,9 @@ const ContactSection = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()} YAAN. All rights reserved. | Providing quality care and transport services with compassion.
-          </p>
+           <p className="text-sm">
+             © {new Date().getFullYear()} YANN. All rights reserved. | Providing quality care and transport services with compassion.
+           </p>
         </div>
       </div>
     </footer>

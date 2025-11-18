@@ -24,7 +24,7 @@ const TeamSectionNew = () => {
       image: "https://via.placeholder.com/300x300?text=SJ",
       bio: "Passionate about making quality care accessible to everyone.",
       linkedin: "#",
-      email: "sarah@yaan.care",
+      email: "sarah@yann.care",
     },
     {
       name: "Michael Chen",
@@ -32,7 +32,7 @@ const TeamSectionNew = () => {
       image: "https://via.placeholder.com/300x300?text=MC",
       bio: "Ensuring seamless service delivery across all platforms.",
       linkedin: "#",
-      email: "michael@yaan.care",
+      email: "michael@yann.care",
     },
     {
       name: "Emily Rodriguez",
@@ -40,7 +40,7 @@ const TeamSectionNew = () => {
       image: "https://via.placeholder.com/300x300?text=ER",
       bio: "Dedicated to maintaining the highest standards of care.",
       linkedin: "#",
-      email: "emily@yaan.care",
+      email: "emily@yann.care",
     },
     {
       name: "David Thompson",
@@ -48,7 +48,7 @@ const TeamSectionNew = () => {
       image: "https://via.placeholder.com/300x300?text=DT",
       bio: "Building a reliable network of professional drivers.",
       linkedin: "#",
-      email: "david@yaan.care",
+      email: "david@yann.care",
     },
   ];
 
@@ -69,7 +69,7 @@ const TeamSectionNew = () => {
             Our Team
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Meet the dedicated professionals behind YAAN
+            Meet the dedicated professionals behind YANN
           </p>
         </motion.div>
 

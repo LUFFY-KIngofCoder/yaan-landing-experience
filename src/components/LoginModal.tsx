@@ -68,7 +68,7 @@ const LoginModal = ({ isOpen, onClose, onSuccess }: LoginModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
-            Welcome to YAAN
+            Welcome to YANN
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
@@ -116,7 +116,7 @@ const LoginModal = ({ isOpen, onClose, onSuccess }: LoginModalProps) => {
           </form>
 
           <div className="text-center text-sm text-muted-foreground">
-            By continuing, you agree to YAAN's Terms of Service and Privacy Policy
+            By continuing, you agree to YANN's Terms of Service and Privacy Policy
           </div>
         </div>
       </DialogContent>

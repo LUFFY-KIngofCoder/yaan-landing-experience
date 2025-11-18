@@ -160,7 +160,7 @@ const Transport = () => {
     {
       name: "Anshika P.",
       rating: 5,
-      text: "Booked a tempo traveller for Goa trip, great experience. Highly recommend YAAN transport!",
+      text: "Booked a tempo traveller for Goa trip, great experience. Highly recommend YANN transport!",
       location: "Pune",
     },
     {
@@ -187,7 +187,7 @@ const Transport = () => {
                 Book Reliable Transport Services – Fast, Safe & Affordable
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8">
-                From local trips to outstation travel and logistic movement, YAAN provides verified drivers and well-maintained vehicles.
+                From local trips to outstation travel and logistic movement, YANN provides verified drivers and well-maintained vehicles.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-lg px-8">Book a Ride</Button>
@@ -259,12 +259,12 @@ const Transport = () => {
         </div>
       </section>
 
-      {/* Why Travel with YAAN Section */}
+      {/* Why Travel with YANN Section */}
       <section className="py-20 px-4 md:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <Badge className="mb-4">Why Choose Us</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Travel with YAAN?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Travel with YANN?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Experience the difference with our professional transport services
             </p>

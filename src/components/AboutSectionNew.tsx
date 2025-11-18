@@ -20,17 +20,17 @@ const AboutSectionNew = () => {
           className="text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            About YAAN
+            About YANN
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            YAAN is dedicated to providing exceptional home care and transportation
+            YANN is dedicated to providing exceptional home care and transportation
             services that enhance the quality of life for individuals and families.
             We connect you with verified, professional caregivers and drivers who
             are committed to delivering compassionate, reliable service every day.
           </p>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-6">
             Our mission is to make quality care and transportation accessible,
-            affordable, and trustworthy. With YAAN, you can rest assured that your
+            affordable, and trustworthy. With YANN, you can rest assured that your
             loved ones are in good hands.
           </p>
         </motion.div>

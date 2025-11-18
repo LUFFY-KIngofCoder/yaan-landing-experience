@@ -24,10 +24,10 @@ const AboutSection = () => {
     <section className="py-20 px-4 md:px-8 bg-muted">
       <div className="container mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-4">
-          About YAAN
+          About YANN
         </h2>
         <p className="text-center text-lg text-foreground mb-12 max-w-3xl mx-auto">
-          YAAN is dedicated to enhancing quality of life through exceptional home care
+          YANN is dedicated to enhancing quality of life through exceptional home care
           and reliable transport services. With years of experience and a passionate
           team, we provide peace of mind to families and independence to those we serve.
         </p>

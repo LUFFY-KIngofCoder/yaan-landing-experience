@@ -47,7 +47,7 @@ const Header = () => {
           >
             <img
               src="/images/logo/logo.svg"
-              alt="YAAN Logo"
+              alt="YANN Logo"
               className="h-12 w-auto"
               style={{ maxHeight: "48px" }}
             />

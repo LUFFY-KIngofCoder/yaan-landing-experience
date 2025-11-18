@@ -28,10 +28,10 @@ export interface Partner {
 }
 
 const DB_KEYS = {
-  USERS: 'yaan_users',
-  PARTNERS: 'yaan_partners',
-  CURRENT_USER: 'yaan_current_user',
-  CURRENT_PARTNER: 'yaan_current_partner',
+  USERS: 'yann_users',
+  PARTNERS: 'yann_partners',
+  CURRENT_USER: 'yann_current_user',
+  CURRENT_PARTNER: 'yann_current_partner',
 };
 
 // User Database Functions
