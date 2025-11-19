@@ -46,6 +46,9 @@ All colors MUST be HSL.
     /* Cloud Container Colors */
     --cloud-home: 212 100% 97%; /* Light blue tint */
     --cloud-transport: 200 100% 97%; /* Light cyan tint */
+    
+    /* Footer Dark Blue */
+    --footer-dark: 220 60% 15%; /* Dark blue for footer separation */
 
     /* Animation & Effects */
     --shadow-sm: 0 1px 3px 0 hsl(220 15% 20% / 0.1);

@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
 import PartnerRegistrationModal from "./PartnerRegistrationModal";
 import ServicesModal from "./ServicesModal";
-import LibraryModal from "./LibraryModal";
 import { userDB, partnerDB, User, Partner } from "@/lib/database";
 
 const Header = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isPartnerRegOpen, setIsPartnerRegOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isLibraryOpen, setIsLibraryOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentPartner, setCurrentPartner] = useState<Partner | null>(null);
 
@@ -61,13 +59,6 @@ const Header = () => {
               className="text-foreground hover:text-primary"
             >
               Services
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => setIsLibraryOpen(true)}
-              className="text-foreground hover:text-primary"
-            >
-              Library
             </Button>
             <Button
               variant="ghost"
@@ -132,10 +123,6 @@ const Header = () => {
       <ServicesModal 
         isOpen={isServicesOpen} 
         onClose={() => setIsServicesOpen(false)}
-      />
-      <LibraryModal 
-        isOpen={isLibraryOpen} 
-        onClose={() => setIsLibraryOpen(false)}
       />
     </>
   );

@@ -11,7 +11,7 @@ const TransportFooter = () => {
     <footer
       ref={ref}
       id="contact"
-      className="bg-background border-t border-border py-16 px-4 md:px-8"
+      className="bg-footer-dark border-t border-border/20 py-16 px-4 md:px-8"
     >
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">

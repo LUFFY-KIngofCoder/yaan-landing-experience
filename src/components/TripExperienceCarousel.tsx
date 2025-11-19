@@ -49,7 +49,7 @@ const TripExperienceCarousel = ({ images }: TripExperienceCarouselProps) => {
 
   return (
     <>
-      <section className="py-20 px-4 md:px-8 bg-muted/30">
+      <section className="py-20 px-4 md:px-8 bg-muted/30 overflow-hidden">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <Badge className="mb-4">Trip Experiences</Badge>
@@ -80,27 +80,45 @@ const TripExperienceCarousel = ({ images }: TripExperienceCarouselProps) => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group cursor-pointer"
+                    className="group cursor-pointer perspective-1000"
                     onClick={() => openLightbox(image)}
+                    whileHover={{ 
+                      scale: 1.05,
+                      rotateY: 5,
+                      rotateX: 5,
+                      z: 50
+                    }}
+                    style={{ 
+                      transformStyle: "preserve-3d",
+                      perspective: "1000px"
+                    }}
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500" 
+                         style={{ 
+                           transform: "translateZ(20px)",
+                           transformStyle: "preserve-3d"
+                         }}>
                       <img
                         src={image.src}
                         alt={image.alt}
                         loading="lazy"
-                        className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
-                    <p className="mt-3 text-sm text-muted-foreground text-center px-2">
+                    <motion.p 
+                      className="mt-3 text-sm text-muted-foreground text-center px-2"
+                      style={{ transform: "translateZ(30px)" }}
+                    >
                       {image.caption}
-                    </p>
+                    </motion.p>
                   </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12" />
-            <CarouselNext className="hidden md:flex -right-12" />
+            <CarouselPrevious className="hidden md:flex -left-12 hover:scale-110 transition-transform" />
+            <CarouselNext className="hidden md:flex -right-12 hover:scale-110 transition-transform" />
           </Carousel>
         </div>
       </section>
