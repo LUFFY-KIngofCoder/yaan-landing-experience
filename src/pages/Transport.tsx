@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import TransportFooter from "@/components/TransportFooter";
 import TripExperienceCarousel from "@/components/TripExperienceCarousel";
+import DynamicBackground from "@/components/DynamicBackground";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -223,7 +224,8 @@ const Transport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <DynamicBackground />
       <Header />
       
       {/* Hero Section */}
@@ -386,16 +388,16 @@ const Transport = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials & Trip Experience Section */}
       <section className="py-20 px-4 md:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <Badge className="mb-4">Testimonials</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
-            <p className="text-lg text-muted-foreground">Real experiences from real people</p>
+            <Badge className="mb-4">What Our Customers Say</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Real Reviews, Real Experiences</h2>
+            <p className="text-lg text-muted-foreground">Trusted by thousands of happy travelers</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}>
                 <Card className="p-6 h-full">
@@ -418,11 +420,13 @@ const Transport = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Integrated Trip Experience Carousel */}
+          <div className="mt-12">
+            <TripExperienceCarousel images={tripImages} />
+          </div>
         </div>
       </section>
-
-      {/* Trip Experience Carousel */}
-      <TripExperienceCarousel images={tripImages} />
 
       {/* How to Book Section */}
       <section className="py-20 px-4 md:px-8 bg-muted/50">
