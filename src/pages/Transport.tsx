@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import TransportFooter from "@/components/TransportFooter";
+import TripExperienceCarousel from "@/components/TripExperienceCarousel";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -172,6 +173,54 @@ const Transport = () => {
   ];
 
   const galleryImages = [heroImage, sedanImage, eRickshawImage, weddingCarImage, pickupImage, tempoImage, parcelImage, shuttleImage];
+
+  const tripImages = [
+    {
+      src: "/pics/1.jpg",
+      caption: "Mumbai to Goa - Coastal Highway Adventure",
+      alt: "Scenic coastal highway trip",
+    },
+    {
+      src: "/pics/5.jpg",
+      caption: "Delhi to Manali - Mountain Expedition",
+      alt: "Mountain road journey",
+    },
+    {
+      src: "/pics/10.jpg",
+      caption: "Wedding Ceremony - Luxury Car Service",
+      alt: "Luxury wedding car",
+    },
+    {
+      src: "/pics/15.jpg",
+      caption: "Corporate Shuttle - Office Commute",
+      alt: "Corporate shuttle service",
+    },
+    {
+      src: "/pics/20.jpg",
+      caption: "Airport Transfer - Early Morning Service",
+      alt: "Airport pickup service",
+    },
+    {
+      src: "/pics/25.jpg",
+      caption: "Family Trip - Tempo Traveller Journey",
+      alt: "Family group travel",
+    },
+    {
+      src: "/pics/30.jpg",
+      caption: "Goods Transport - Pickup Truck Service",
+      alt: "Logistics and goods transport",
+    },
+    {
+      src: "/pics/35.jpg",
+      caption: "Local City Tour - E-Rickshaw Ride",
+      alt: "Eco-friendly city transport",
+    },
+    {
+      src: "/pics/40.jpg",
+      caption: "Outstation Trip - Long Distance Comfort",
+      alt: "Long distance travel",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -371,6 +420,9 @@ const Transport = () => {
           </div>
         </div>
       </section>
+
+      {/* Trip Experience Carousel */}
+      <TripExperienceCarousel images={tripImages} />
 
       {/* How to Book Section */}
       <section className="py-20 px-4 md:px-8 bg-muted/50">
